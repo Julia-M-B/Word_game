@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div>
+        <p><a href="{% url 'new-game' %}">Zagraj w nową grę</a></p>
+    </div>
+    <table class="responsive-table">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Created</th>
+            <th>Status</th>
+            <th>Category</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for game in games %}
+            <tr>
+                <td><a href="{% url 'game' game.id %}">
+                    {% if game.name %}
+                        {{ game.name }}
+                    {% else %}
+                        {{ "Game" }}
+                    {% endif %}</a></td>
+                <td>{{ game.created }}</td>
+                <td>{{ game.status }}</td>
+                <td>{{ game.category }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock content %}

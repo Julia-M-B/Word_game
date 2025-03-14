@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% if player_id %}
+        <h1>Witaj graczu!</h1>
+    {% else %}
+        <h1>Witaj na głównej stronie!</h1>
+    {% endif %}
+
+    <a href="{% url 'new-game' %}">Nowa gra</a>
+
+{% endblock content %}
