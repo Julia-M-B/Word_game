@@ -2,40 +2,71 @@
 
 {% block content %}
 
-    <form action="javascript:void(0);" method="POST">
-        {% csrf_token %}
-        <div class="row">
-            <div class="input-field col s8 m8 l8 offset-s2 offset-m2 offset-l2">
-                <input id="username" placeholder="Username" type="text">
-                <label for="username"></label>
-                <input id="password" placeholder="Password" type="password">
-                <label for="password"></label>
+    <div id="login-form">
+        <form action="javascript:void(0);" method="POST">
+            {% csrf_token %}
+            <div class="row">
+                <div class="input-field col s8 m8 l8 offset-s2 offset-m2 offset-l2">
+                    <input id="username" placeholder="Username" type="text">
+                    <label for="username"></label>
+                    <span class="helper-text" data-error="Incorrect username"></span>
+                    <input id="password" placeholder="Password" type="password">
+                    <label for="password"></label>
+                    <span class="helper-text" data-error="Incorrect password"></span>
+                </div>
             </div>
-        </div>
-        <button id="login_button" class="btn waves-effect waves-light" type="submit" name="action"
-                onclick="send_login_data()">Zaloguj
-        </button>
-    </form>
+            <button id="login_button" class="btn waves-effect waves-light" type="submit" name="action"
+                    onclick="send_login_data()">Zaloguj
+            </button>
+        </form>
+    </div>
+
+    <div id="status-message">
+
+    </div>
 
 {% endblock content %}
 
 {% block js-script %}
     <script>
-
         function send_login_data() {
             let username = $('#username').val();
             let password = $('#password').val();
+            if (!username) {
+                $("#username").addClass("invalid");
+            }
+            if (!password) {
+                $("#password").addClass("invalid");
+            }
+            if (!(username && password)) {
+                return;
+            }
             $.post("{% url 'login' %}", {
                     "username": username,
                     "password": password,
                     "csrfmiddlewaretoken": document.getElementsByName('csrfmiddlewaretoken')[0].value
                 },
                 function (response) {
-                if (response.action == "redirect") {
-                    window.location.href = response.redirect_url;
+                    if (response.action == "redirect") {
+                        window.location.href = response.redirect_url;
+                        return;
+                    } else if (response.action == "register") {
+
+                    }
                 }
-            }
-            );
+            ).fail(function (response) {
+                $("#username").removeClass("invalid");
+                $("#password").removeClass("invalid");
+                let code = response.status;
+                switch (code) {
+                    case 401:
+                        $("#password").addClass("invalid");
+                        break;
+                    case 404:
+                        $("#username").addClass("invalid");
+                        break;
+                }
+            });
         }
     </script>
 
