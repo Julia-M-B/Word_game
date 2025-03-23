@@ -1,0 +1,213 @@
+@import 'https://fonts.googleapis.com/css?family=Playfair+Display:400,700i,900i';
+
+/** {*/
+/*    box-sizing: border-box;*/
+/*}*/
+
+/*body {*/
+/*    font-family: 'Playfair Display', serif;*/
+/*    color: black;*/
+/*    text-rendering: optimizeLegibility;*/
+/*    font-smooth: always;*/
+/*    background-color: #779ECC;*/
+/*    font-size: 14px;*/
+/*    overflow: hidden;*/
+/*}*/
+
+.wrap {
+    perspective-origin: 50% 50%;
+}
+
+
+#login-box {
+    background-color: rgb(211, 211, 211);
+    width: 300px;
+    border-radius: 30px;
+    padding-bottom: 20px;
+    margin-top: 100px;
+}
+
+#login-box button {
+    color: black;
+    font-family: 'Playfair Display', serif;
+    font-smooth: always;
+    font-style: normal;
+    font-weight: 500;
+    background-color: #9FC0DE;
+    border-radius: 30px;
+}
+
+#login-form input::placeholder {
+    color: #777777;
+    font-family: 'Playfair Display', serif;
+    font-smooth: always;
+    font-style: normal;
+}
+
+.svg {
+    stroke: #FF985A;
+    stroke-width: 3px;
+    position: absolute;
+    bottom: -200vh;
+    transform-style: preserve-3d;
+}
+
+.svg:nth-child(1) {
+    left: 10%;
+    animation: raise1 17s linear infinite;
+    animation-delay: -3s;
+    transform: scale(0.6) rotate(64deg);
+    z-index: -6;
+    filter: blur(-5px);
+}
+
+@keyframes raise1 {
+    to {
+        bottom: 150vh;
+        transform: scale(0.6) rotate(182deg);
+    }
+}
+
+.svg:nth-child(2) {
+    left: 40%;
+    animation: raise2 19s linear infinite;
+    animation-delay: 0s;
+    transform: scale(0) rotate(11deg);
+    z-index: -5;
+    filter: blur(-4px);
+}
+
+@keyframes raise2 {
+    to {
+        bottom: 150vh;
+        transform: scale(0) rotate(220deg);
+    }
+}
+
+.svg:nth-child(3) {
+    left: 47%;
+    animation: raise3 17s linear infinite;
+    animation-delay: 0s;
+    transform: scale(0.6) rotate(313deg);
+    z-index: -4;
+    filter: blur(-3px);
+}
+
+@keyframes raise3 {
+    to {
+        bottom: 150vh;
+        transform: scale(0.6) rotate(336deg);
+    }
+}
+
+.svg:nth-child(4) {
+    left: 86%;
+    animation: raise4 20s linear infinite;
+    animation-delay: -3s;
+    transform: scale(1.5) rotate(102deg);
+    z-index: -3;
+    filter: blur(-2px);
+}
+
+@keyframes raise4 {
+    to {
+        bottom: 150vh;
+        transform: scale(1.5) rotate(89deg);
+    }
+}
+
+.svg:nth-child(5) {
+    left: 56%;
+    animation: raise5 11s linear infinite;
+    animation-delay: -3s;
+    transform: scale(0.9) rotate(136deg);
+    z-index: -2;
+    filter: blur(-1px);
+}
+
+@keyframes raise5 {
+    to {
+        bottom: 150vh;
+        transform: scale(0.9) rotate(201deg);
+    }
+}
+
+.svg:nth-child(6) {
+    left: 68%;
+    animation: raise6 20s linear infinite;
+    animation-delay: -4s;
+    transform: scale(1.2) rotate(58deg);
+    z-index: -1;
+    filter: blur(2px);
+}
+
+@keyframes raise6 {
+    to {
+        bottom: 150vh;
+        transform: scale(1.2) rotate(11deg);
+    }
+}
+
+.svg:nth-child(7) {
+    left: 90%;
+    animation: raise7 20s linear infinite;
+    animation-delay: -4s;
+    transform: scale(1.5) rotate(144deg);
+    z-index: -2;
+    filter: blur(3px);
+}
+
+@keyframes raise7 {
+    to {
+        bottom: 150vh;
+        transform: scale(1.5) rotate(93deg);
+    }
+}
+
+.svg:nth-child(8) {
+    left: 14%;
+    animation: raise8 11s linear infinite;
+    animation-delay: -1s;
+    transform: scale(1.8) rotate(327deg);
+    z-index: -3;
+    filter: blur(1px);
+}
+
+@keyframes raise8 {
+    to {
+        bottom: 150vh;
+        transform: scale(1.8) rotate(71deg);
+    }
+}
+
+.svg:nth-child(9) {
+    left: 8%;
+    animation: raise9 7s linear infinite;
+    animation-delay: -2s;
+    transform: scale(2.1) rotate(37deg);
+    z-index: -1;
+    filter: blur(1px);
+}
+
+@keyframes raise9 {
+    to {
+        bottom: 150vh;
+        transform: scale(2.1) rotate(52deg);
+    }
+}
+
+.svg:nth-child(10) {
+    left: -19%;
+    animation: raise10 13s linear infinite;
+    animation-delay: -4s;
+    transform: scale(2.4) rotate(241deg);
+    z-index: -3;
+    filter: blur(-4px);
+}
+
+@keyframes raise10 {
+    to {
+        bottom: 150vh;
+        transform: scale(2.4) rotate(128deg);
+    }
+}

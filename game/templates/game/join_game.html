@@ -2,12 +2,42 @@
 
 {% block content %}
 
-  <p>Dołącz do gry podając słowo.</p>
+    <div>
+        <p class="center-align">Player {{ host_nickname }} invited you to join new game</p>
 
-  <form action="  " method="POST">
-    {% csrf_token %}
-    {{form.as_p}}
-    <input type="submit">
-  </form>
+        <p class="center-align">Accept invitation by writing your first word</p>
+
+        <form id="join_game" class="col s12 m12 l12" action="javascript:void(0);" method="POST">
+            {% csrf_token %}
+            <div class="row">
+                <div class="input-field col s8 m8 l8 offset-s2 offset-m2 offset-l2">
+                    <input placeholder="Join this game by writing your first word" id="word" type="text"
+                           class="validate">
+                    <label for="word"></label>
+                </div>
+            </div>
+            <button id="send_answer_button" class="btn waves-effect waves-light" type="submit" name="action"
+                    onclick="send_answer()">Wyślij
+                <i class="material-icons right">send</i>
+            </button>
+        </form>
+    </div>
 
 {% endblock content %}
+
+{% block js-script %}
+    <script>
+        function send_answer() {
+            let answer = $('#word').val();
+            console.log(answer);
+            $.post("{% url 'invite' game_id %}", {
+                    "word": answer,
+                    "csrfmiddlewaretoken": document.getElementsByName('csrfmiddlewaretoken')[0].value
+                },
+                function (){
+                location.reload();
+                }
+            );
+        }
+    </script>
+{% endblock js-script %}

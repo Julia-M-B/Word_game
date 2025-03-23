@@ -1,34 +1,166 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block scripts %}
+    <link rel="stylesheet" href="{% static 'css/background_animation.css' %}"></script>
+{% endblock scripts %}
 
 {% block content %}
 
-    <div id="login-form">
-        <form action="javascript:void(0);" method="POST">
-            {% csrf_token %}
-            <div class="row">
-                <div class="input-field col s8 m8 l8 offset-s2 offset-m2 offset-l2">
-                    <input id="username" placeholder="Username" type="text">
-                    <label for="username"></label>
-                    <span class="helper-text" data-error="Incorrect username"></span>
-                    <input id="password" placeholder="Password" type="password">
-                    <label for="password"></label>
-                    <span class="helper-text" data-error="Incorrect password"></span>
+    {#    <div id="login-form">#}
+    {#        <form action="javascript:void(0);" method="POST">#}
+    {#            {% csrf_token %}#}
+    {#            <div class="row">#}
+    {#                <div class="input-field col s8 m8 l8 offset-s2 offset-m2 offset-l2">#}
+    {#                    <input id="username" placeholder="Username" type="text">#}
+    {#                    <label for="username"></label>#}
+    {#                    <span class="helper-text" data-error="Incorrect username"></span>#}
+    {#                    <input id="password" placeholder="Password" type="password">#}
+    {#                    <label for="password"></label>#}
+    {#                    <span class="helper-text" data-error="Incorrect password"></span>#}
+    {#                </div>#}
+    {#            </div>#}
+    {#            <button id="login_button" class="btn waves-effect waves-light" type="submit" name="action"#}
+    {#                    onclick="send_login_data()">Log in#}
+    {#            </button>#}
+    {#        </form>#}
+    {#    </div>#}
+    {#    <div id="play-as-guest">#}
+    {#        <p class="center-align">Don't want to log in?</p>#}
+    {#        <button id="guest_button" class="btn waves-effect waves-light" type="submit" name="action" onclick="new_player()">Play as a guest!#}
+    {#        </button>#}
+    {#    </div>#}
+    {##}
+    {#    <div id="status-message">#}
+    {##}
+    {#    </div>#}
+
+    <div id="login-box" class="row center-align">
+        <div id="login-form">
+            <form action="javascript:void(0);" method="POST">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="input-field col s8 m8 l8 offset-s2 offset-m2 offset-l2">
+                        <input id="username" placeholder="Username" type="text" class="center-align">
+                        <label for="username"></label>
+                        <span class="helper-text" data-error="Incorrect username"></span>
+                        <input id="password" placeholder="Password" type="password" class="center-align">
+                        <label for="password"></label>
+                        <span class="helper-text" data-error="Incorrect password"></span>
+                    </div>
                 </div>
-            </div>
-            <button id="login_button" class="btn waves-effect waves-light" type="submit" name="action"
-                    onclick="send_login_data()">Zaloguj
+                <button id="login_button" class="btn waves-effect waves-light" type="submit" name="action"
+                        onclick="send_login_data()">Log in
+                </button>
+            </form>
+        </div>
+        <div id="play-as-guest">
+            <p class="center-align">Don't want to log in?</p>
+            <button id="guest_button" class="btn waves-effect waves-light" type="submit" name="action"
+                    onclick="new_player()">Play as a guest!
             </button>
-        </form>
+        </div>
+
+        <div id="status-message">
+
+        </div>
     </div>
 
-    <div id="status-message">
+    <div class="wrap">
+        <svg class="svg" width="800" height="500" xmlns="http://www.w3.org/2000/svg">
+            <style>
+                .heavy {
+                    font: bold 150px sans-serif;
+                }
+            </style>
+            <text x="0" y="150" class="heavy">Winner</text>
+        </svg>
 
+        <svg class="svg" width="800" height="500" xmlns="http://www.w3.org/2000/svg">
+            <style>
+                .heavy {
+                    font: bold 150px sans-serif;
+                }
+            </style>
+            <text x="0" y="150" class="heavy">Fun</text>
+        </svg>
+
+
+        <svg class="svg" width="800" height="500" xmlns="http://www.w3.org/2000/svg">
+            <style>
+                .heavy {
+                    font: bold 150px serif;
+                    fill: #002244;
+                }
+            </style>
+            <text x="0" y="150" class="heavy">Code</text>
+        </svg>
+
+
+        <svg class="svg" width="800" height="500" xmlns="http://www.w3.org/2000/svg">
+            <style>
+                .heavy {
+                    font: bold 150px sans-serif;
+                }
+            </style>
+            <text x="0" y="150" class="heavy">Play</text>
+        </svg>
+
+
+        <svg class="svg" width="800" height="500" xmlns="http://www.w3.org/2000/svg">
+            <style>
+                .heavy {
+                    font: bold 150px sans-serif;
+                }
+            </style>
+            <text x="0" y="150" class="heavy">Words</text>
+        </svg>
+
+        <svg class="svg" width="800" height="500" xmlns="http://www.w3.org/2000/svg">
+            <style>
+                .heavy {
+                    font: bold 150px sans-serif;
+                }
+            </style>
+            <text x="0" y="150" class="heavy">Game</text>
+        </svg>
+
+        <svg class="svg" width="800" height="500" xmlns="http://www.w3.org/2000/svg">
+            <style>
+                .heavy {
+                    font: bold 150px sans-serif;
+                }
+            </style>
+            <text x="0" y="150" class="heavy">Text</text>
+        </svg>
+
+        <svg class="svg" width="800" height="500" xmlns="http://www.w3.org/2000/svg">
+            <style>
+                .heavy {
+                    font: bold 150px sans-serif;
+                }
+            </style>
+            <text x="0" y="150" class="heavy">Joy</text>
+        </svg>
+
+        <svg class="svg" width="800" height="500" xmlns="http://www.w3.org/2000/svg">
+            <style>
+                .heavy {
+                    font: bold 150px sans-serif;
+                }
+            </style>
+            <text x="0" y="150" class="heavy">Love</text>
+        </svg>
     </div>
 
 {% endblock content %}
 
 {% block js-script %}
     <script>
+        function new_player() {
+            window.location.href = "{% url 'new-player' %}"
+        }
+
         function send_login_data() {
             let username = $('#username').val();
             let password = $('#password').val();

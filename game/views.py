@@ -1,7 +1,6 @@
 from django.http import JsonResponse
 from django.shortcuts import redirect, render
 from rest_framework import status
-from rest_framework.response import Response
 
 from .forms import GameForm, PlayerForm
 from .models import Game, Player
@@ -85,7 +84,6 @@ def join_game(request, pk: str):
     # i nie jest zapisany w sesji, to przekierowywujemy go na stronę
     # z tworzeniem nowego gracza
     if not player_id:
-        print(type(pk), pk)
         request.session["game_id"] = pk
         return redirect("new-player")
 
@@ -100,19 +98,25 @@ def join_game(request, pk: str):
         if player_id == str(game.guest.id):
             return redirect("game", str(game.id))
         # zwracamy forbidden
-        return Response(status=status.HTTP_403_FORBIDDEN)
+        return JsonResponse(data={}, status=status.HTTP_403_FORBIDDEN)
 
     # w przeciwnym razie (czyli gra czeka cały czas na gościa):
     # tutaj kod do zmiany analogicznie jak w widoku `nowa gra`
     if request.method == "POST":
-        form = GameForm(request.POST)
-        if form.is_valid():
-            answer = form["word"].data
-            player, created = Player.objects.get_or_create(id=player_id)
-            game.guest = player
-            game.answer_as_guest(answer)
-            return redirect("game", str(game.id))
-    context = {"form": form}
+        answer = request.POST.get("word")
+        if not answer:
+            return JsonResponse(
+                data={"error": "No `word` key"}, status=status.HTTP_400_BAD_REQUEST
+            )
+        player, created = Player.objects.get_or_create(id=player_id)
+        game.guest = player
+        game.answer_as_guest(answer)
+        return redirect("game", str(game.id))
+    context = {
+        "form": form,
+        "host_nickname": game.host.nickname,
+        "game_id": str(game.id),
+    }
     return render(request, "game/join_game.html", context=context)
 
 
