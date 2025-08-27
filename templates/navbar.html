@@ -1,17 +1,76 @@
 {% load static %}
+
+<style>
+
+    .nav-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 20px;
+    }
+
+    .word-game-container {
+        font-family: "Orbitron", system-ui;
+        height: 100%;
+        width: 20%;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        padding: 0 15px;
+        border-radius: 5px;
+        overflow: hidden;
+    }
+
+    .word-game-container a {
+        color: black;
+        white-space: nowrap;
+        display: inline-block;
+        line-height: 1;
+        font-size: clamp(16px, 8vh, 36px);
+        text-decoration: none; /* Remove underline */
+    }
+
+    .word-game-container span {
+        color: black;
+        display: inline-block;
+        line-height: 1;
+        font-size: clamp(16px, 8vh, 36px);
+    }
+
+    .word-game-cursor {
+        animation: blink-cursor 1s infinite;
+        margin-left: 2px; /* Small gap between text and cursor */
+    }
+
+    @keyframes blink-cursor {
+        0%, 100% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0;
+        }
+    }
+
+</style>
+
 <nav>
-    <div class="nav-wrapper" style="background: #FF985A">
-        <a href="{% url 'index' %}" class="brand-logo"><img src="{% static 'img/logo.gif' %}" alt="Word Game"></a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="{% url 'my-games' %}">Games</a></li>
-            <li><a href="#">Stats</a></li>
-            {% if request.user.is_authenticated %}
-                <li><a href="#">Profile</a></li>
-                <li id="login-logout"><a href="{% url 'logout' %}">Logout</a></li>
-            {% else %}
-                <li id="login-logout"><a href="{% url 'login' %}">Login</a></li>
-            {% endif %}
-        </ul>
+  <div class="nav-wrapper" style="background: #FF985A">
+    <div class="word-game-container">
+      <a href="{% url 'index' %}">
+        <span>WordGame</span><span class="word-game-cursor">|</span>
+      </a>
     </div>
+
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><a href="{% url 'my-games' %}">Games</a></li>
+      <li><a href="#">Stats</a></li>
+      {% if request.user.is_authenticated %}
+        <li><a href="#">Profile</a></li>
+        <li id="login-logout"><a href="{% url 'logout' %}">Logout</a></li>
+      {% else %}
+        <li id="login-logout"><a href="{% url 'login' %}">Login</a></li>
+      {% endif %}
+    </ul>
+  </div>
 </nav>
 

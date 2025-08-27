@@ -1,0 +1,44 @@
+@import 'https://fonts.googleapis.com/css?family=Playfair+Display:400,700i,900i';
+@import 'background_animation.css';
+
+/** {*/
+/*    box-sizing: border-box;*/
+/*}*/
+
+/*body {*/
+/*    font-family: 'Playfair Display', serif;*/
+/*    color: black;*/
+/*    text-rendering: optimizeLegibility;*/
+/*    font-smooth: always;*/
+/*    background-color: #779ECC;*/
+/*    font-size: 14px;*/
+/*    overflow: hidden;*/
+/*}*/
+
+
+
+
+#login-box {
+    background-color: rgb(211, 211, 211);
+    width: 300px;
+    border-radius: 30px;
+    padding-bottom: 20px;
+    margin-top: 100px;
+}
+
+#login-box button {
+    color: black;
+    font-family: 'Playfair Display', serif;
+    font-smooth: always;
+    font-style: normal;
+    font-weight: 500;
+    background-color: #9FC0DE;
+    border-radius: 30px;
+}
+
+#login-form input::placeholder {
+    color: #777777;
+    font-family: 'Playfair Display', serif;
+    font-smooth: always;
+    font-style: normal;
+}
